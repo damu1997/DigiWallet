@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+	name = damu1997
+	email = damodaran.krishnan@atmecs.com
+# Please adapt and uncomment the following lines:
+#	name = Damodaran Santhana Krishnan
+#	email = Damodaran.Krishnan@ATMECS.CORP
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
