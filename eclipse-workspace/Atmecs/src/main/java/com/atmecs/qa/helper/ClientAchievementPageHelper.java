@@ -7,5 +7,12 @@ public class ClientAchievementPageHelper {
 	public static String allHeaderContentgetProperty(){
 		String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.CLIENT_ACHIEVE_LOC),"AllHeaderContent");
 		return data;		
+	}
+	
+	public static String oneByoneHeaderContentgetProperty(){
+		String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.CLIENT_ACHIEVE_LOC),"OneByOneHeader");
+		return data;		
 		}
+
+	
 }

@@ -2,11 +2,11 @@ package com.atmecs.qa.testscript;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.atmecs.qa.helper.ClientAchievementPageHelper;
 import com.atmecs.qa.helper.MediaPageHelper;
 import com.atmecs.qa.helper.NewsPageHelper;
 import com.atmecs.qa.testbase.Base;
@@ -20,8 +20,6 @@ public class NewsPageTest extends Base{
 	@BeforeTest	
 public void preSetUp(){
 		openBrowser();
-		
-			
 	}
 	
 	
@@ -48,19 +46,27 @@ public void preSetUp(){
 		
 	}
 	@Test(priority = 1)
-	public void Readmore() {
+	public void validatingAllReadMore() {
 		//media	
 		WebElement media=commutils.find(driver,MediaPageHelper.MediagetProperty());	
 		commutils.mouseOverElement(driver, media);
 		//news
 		commutils.waitForElement(driver, MediaPageHelper.NewsgetProperty());
-		commutils.normalClick(driver, MediaPageHelper.NewsgetProperty());
-		//ReadMoreBtn
-		commutils.normalClick(driver, NewsPageHelper.singleBtngetProperty());
-		commutils.verifyTrue(CommonUtils.isDisplayed(driver, NewsPageHelper.pdfTitlegetProperty()),"passed");
-		
-		
+		commutils.normalClick(driver, MediaPageHelper.NewsgetProperty());	
+		//clicking on all the read more
+		List<WebElement> readMoreLink = commutils.getListOfWebElement(driver,NewsPageHelper.AllReadMoreBtngetProperty());
+
+		for(int i=1; i<=readMoreLink.size(); i++) {
+			
+			if(commutils.waitForElement(driver, NewsPageHelper.SingleReadMoreBtngetProperty().replace("l", String.valueOf(i)))); {
+			commutils.normalClick(driver, NewsPageHelper.SingleReadMoreBtngetProperty().replace("l", String.valueOf(i)));
+			//assertforallnewspdf
+			commutils.verifyTrue(commutils.isDisplayed(driver, NewsPageHelper.pdfTitlegetProperty()), "passed");
+			
 	}
+	}
+	}
+
 	
 	
 }	

@@ -22,5 +22,13 @@ public static String pdfTitlegetProperty(){
 String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.NEWS_LOC),"pdftitle");
 return data;	
 }
+public static String AllReadMoreBtngetProperty(){
+	String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.NEWS_LOC),"AllReadMoreBtn");
+	return data;		
+}
 
+public static String SingleReadMoreBtngetProperty(){
+	String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.NEWS_LOC),"SingleReadMoreBtn");
+	return data;		
+	}
 }

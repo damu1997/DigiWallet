@@ -11,14 +11,15 @@ import org.testng.annotations.Test;
 import com.atmecs.qa.helper.CSRPageHelper;
 import com.atmecs.qa.helper.ClientAchievementPageHelper;
 import com.atmecs.qa.helper.MediaPageHelper;
+import com.atmecs.qa.helper.NewsPageHelper;
 import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
 import com.atmecs.qa.utils.LogReporter;
 
 public class ClientAchievementPageTest extends Base{
-	CommonUtils commutils=new CommonUtils();
+	static CommonUtils commutils=new CommonUtils();
 	LogReporter logreport=new LogReporter();
-	
+
 	
 
 	@BeforeTest	
@@ -46,35 +47,23 @@ commutils.verifyTrue( listofContent==allheaderContent, "passed");
 }
 	
 @Test
-public void validatingReadmore() throws InterruptedException {
-	
-//clicking on read more
-List<WebElement> readMoreLink = driver.findElements(By.xpath("//p/a[contains(text(),'Read More')]"));
-	
-for(int i=1; i<=readMoreLink.size(); i++) {
-		
-	//if(commutils.waitForElement(driver, ClientAchievementPageHelper.allHeaderContentgetProperty().replace("[xxx]",))) {
-commutils.normalClick(driver, ClientAchievementPageHelper.allHeaderContentgetProperty().replace('x','i'));
-		//driver.findElement(By.xpath("(//p/a[contains(text(),'Read More')])["i"]")).click();}
-		
-	driver.navigate().back();
-		
-	}
-	}
-	
+public void validatingReadmore()  {
 
-	
-	//click on read more
-		/*
-		 * for(WebElement element: readMoreLinks) { System.out.println(element);
-		 * if(commutils.waitForWebElement(driver, element)) { element.click(); }
-		 * driver.navigate().back();
-		 * 
-		 * }
+//clicking on all the read more
+	List<WebElement> readMoreLink = commutils.getListOfWebElement(driver,ClientAchievementPageHelper.allHeaderContentgetProperty());
 
-		 *
-		 */
+	for(int i=1; i<=readMoreLink.size(); i++) {
+		
+		if(commutils.waitForElement(driver, ClientAchievementPageHelper.oneByoneHeaderContentgetProperty().replace("l", String.valueOf(i)))); {
+		commutils.normalClick(driver, ClientAchievementPageHelper.oneByoneHeaderContentgetProperty().replace("l", String.valueOf(i)));
+		driver.navigate().back();
+		
 }
+}	
+}
+}
+
+
 
 
 	
