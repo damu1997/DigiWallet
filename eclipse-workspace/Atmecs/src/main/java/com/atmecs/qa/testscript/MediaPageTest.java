@@ -7,7 +7,12 @@ import org.testng.annotations.Test;
 import com.atmecs.qa.helper.MediaPageHelper;
 import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
-
+/**
+ * This class will performs the validation of all the Navigation 
+ * of Media's sub content
+ * @author Damodaran.Krishnan
+ *
+ */
 public class MediaPageTest extends Base {
 	
 	CommonUtils commutils=new CommonUtils();
@@ -21,75 +26,76 @@ public class MediaPageTest extends Base {
 	
 
 
-@Test(priority = 0)
-public void testMediaPage() {
-	
-	//media
-	Media= commutils.find(driver,MediaPageHelper.MediagetProperty());
-	commutils.mouseOverElement(driver, Media);
-	
-	//news 
-	commutils.waitForElement(driver, MediaPageHelper.NewsgetProperty());
-	commutils.normalClick(driver, MediaPageHelper.NewsgetProperty());
-	commutils.verifyTrue(CommonUtils.isDisplayed(driver, MediaPageHelper.allHeadergetProperty()),"passed");
-	
-	//click home
-	commutils.waitForElement(driver, MediaPageHelper.navigateBackgetProperty());
-	commutils.normalClick(driver, MediaPageHelper.navigateBackgetProperty());
-	
-	
-	
-
-	
-}
-@Test(priority = 1)
-public void testcsr() {
-	//media
-	Media= commutils.find(driver,MediaPageHelper.MediagetProperty());
-		commutils.mouseOverElement(driver, Media);
-		
-		//our CSR
-		commutils.waitForElement(driver,MediaPageHelper.csrgetProperty());
-		commutils.normalClick(driver, MediaPageHelper.csrgetProperty());
-		commutils.verifyTrue(CommonUtils.isDisplayed(driver, MediaPageHelper.allHeadergetProperty()),"passed");
-		
-		//click home
-		commutils.waitForElement(driver,MediaPageHelper.navigateBackgetProperty());
-		commutils.normalClick(driver, MediaPageHelper.navigateBackgetProperty());
-}
-@Test(priority = 2)
-public void testevents() {
-	//media
-	Media= commutils.find(driver,MediaPageHelper.MediagetProperty());
-	commutils.mouseOverElement(driver, Media);
-	
-	
-	//events
-	commutils.waitForElement(driver,MediaPageHelper.eventsgetProperty());
-	commutils.normalClick(driver, MediaPageHelper.eventsgetProperty());
-	commutils.verifyTrue(CommonUtils.isDisplayed(driver, MediaPageHelper.allHeadergetProperty()),"passed");
+	/*
+	 * @Test(priority = 0) public void navigatingToNewsValidation() { //MouseOver to
+	 * media MediaPageHelper.preConfigurationSetup(driver, commutils);
+	 * 
+	 * //Asserting news header MediaPageHelper.assertingHeader(driver, commutils,
+	 * MediaPageHelper.NewsgetProperty(), MediaPageHelper.allHeadergetProperty());
+	 * 
+	 * //click home MediaPageHelper.navigateBackToHomeSetup(driver, commutils); }
+	 * 
+	 * @Test(priority = 1) public void navigatingToCSRValidation() { //MouseOverto
+	 * media MediaPageHelper.preConfigurationSetup(driver, commutils);
+	 * 
+	 * //Asserting CSR header MediaPageHelper.assertingHeader(driver, commutils,
+	 * MediaPageHelper.csrgetProperty(), MediaPageHelper.allHeadergetProperty());
+	 * 
+	 * //NavigateBackToHome MediaPageHelper.navigateBackToHomeSetup(driver,
+	 * commutils); }
+	 * 
+	 * @Test(priority = 2) public void navigatingToEventsValidation() {
+	 * 
+	 * //MouseOverto media MediaPageHelper.preConfigurationSetup(driver, commutils);
+	 * 
+	 * //Asserting Events header MediaPageHelper.assertingHeader(driver, commutils,
+	 * MediaPageHelper.eventsgetProperty(), MediaPageHelper.allHeadergetProperty());
+	 * 
+	 * //NavigateBackToHome MediaPageHelper.navigateBackToHomeSetup(driver,
+	 * commutils); }
+	 * 
+	 * @Test(priority = 3) public void navigatingToClientAchievementsValidation() {
+	 * //MouseOverto media MediaPageHelper.preConfigurationSetup(driver, commutils);
+	 * 
+	 * //Asserting clientAchievements header MediaPageHelper.assertingHeader(driver,
+	 * commutils, MediaPageHelper.clientAchievementsgetProperty(),
+	 * MediaPageHelper.allHeadergetProperty());
+	 * 
+	 * //NavigateBackToHome MediaPageHelper.navigateBackToHomeSetup(driver,
+	 * commutils); }
+	 */
+@Test
+public void AllNavigationUnderMedia() {
 	
 	
-	//click home
-		commutils.waitForElement(driver,MediaPageHelper.navigateBackgetProperty());
-		commutils.normalClick(driver, MediaPageHelper.navigateBackgetProperty());
-		
-}
-@Test(priority = 3)
-public void testclient() {
 	
-	//media
-	Media= commutils.find(driver,MediaPageHelper.MediagetProperty());
-		commutils.mouseOverElement(driver, Media);
-	//clent-ach
-		commutils.waitForElement(driver,MediaPageHelper.clientAchievementsgetProperty());
-		commutils.normalClick(driver, MediaPageHelper.clientAchievementsgetProperty());
-		commutils.verifyTrue(CommonUtils.isDisplayed(driver, MediaPageHelper.allHeadergetProperty()),"passed");
-		
-		//clickhome
-		commutils.waitForElement(driver,MediaPageHelper.allHeadergetProperty());
-		commutils.normalClick(driver, MediaPageHelper.navigateBackgetProperty());
+	for (int i = 0; i < 4; i++) {
+		if(i==0) {
+		MediaPageHelper.preConfigurationSetup(driver, commutils);	
+		MediaPageHelper.assertingHeader(driver, commutils,MediaPageHelper.NewsgetProperty(), MediaPageHelper.allHeadergetProperty());
+	    MediaPageHelper.navigateBackToHomeSetup(driver, commutils);}
+		else if(i==1){
+		MediaPageHelper.preConfigurationSetup(driver, commutils);
+		MediaPageHelper.assertingHeader(driver, commutils,MediaPageHelper.csrgetProperty(), MediaPageHelper.allHeadergetProperty());
+	    MediaPageHelper.navigateBackToHomeSetup(driver,commutils); 		 
+		}
+		else if(i==2) {
+		MediaPageHelper.preConfigurationSetup(driver, commutils);
+		MediaPageHelper.assertingHeader(driver, commutils, MediaPageHelper.eventsgetProperty(), MediaPageHelper.allHeadergetProperty());
+		MediaPageHelper.navigateBackToHomeSetup(driver,commutils); 
+        }
+		else if(i==3) {
 			
+		MediaPageHelper.preConfigurationSetup(driver, commutils);
+        MediaPageHelper.assertingHeader(driver,commutils, MediaPageHelper.clientAchievementsgetProperty(), MediaPageHelper.allHeadergetProperty());
+		MediaPageHelper.navigateBackToHomeSetup(driver,commutils); 
+        }
+		else if(i==4) {
+		MediaPageHelper.preConfigurationSetup(driver, commutils);
+		MediaPageHelper.assertingHeader(driver, commutils, MediaPageHelper.clientAchievementsgetProperty(),MediaPageHelper.allHeadergetProperty());
+		MediaPageHelper.navigateBackToHomeSetup(driver,commutils); 
+		}
+			 	
+}	
 }
-
 }

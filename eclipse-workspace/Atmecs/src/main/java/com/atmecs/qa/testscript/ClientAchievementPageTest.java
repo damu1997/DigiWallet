@@ -2,20 +2,22 @@ package com.atmecs.qa.testscript;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.atmecs.qa.helper.CSRPageHelper;
+import com.atmecs.qa.helper.CsrPageHelper;
 import com.atmecs.qa.helper.ClientAchievementPageHelper;
-import com.atmecs.qa.helper.MediaPageHelper;
-import com.atmecs.qa.helper.NewsPageHelper;
 import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
 import com.atmecs.qa.utils.LogReporter;
-
+/**
+ * This class will performs the validation of all the link Header content count and 
+ * readMore Button
+ * @author Damodaran.Krishnan
+ *
+ */
 public class ClientAchievementPageTest extends Base{
 	static CommonUtils commutils=new CommonUtils();
 	LogReporter logreport=new LogReporter();
@@ -29,20 +31,19 @@ public void preSetUp(){
 		
 	
 @Test
-public void validateHeaderContentCount() {
+public void validateLinkHeaderContentCount() {
 
-	//media	
-WebElement media=commutils.find(driver,MediaPageHelper.MediagetProperty());	
-commutils.mouseOverElement(driver, media);
-   //client-ach
-commutils.waitForElement(driver,MediaPageHelper.clientAchievementsgetProperty());
-commutils.normalClick(driver, MediaPageHelper.clientAchievementsgetProperty());
-	//storing all the header in list
-List<WebElement>allheaderContent=commutils.getListOfWebElement(driver, CSRPageHelper.allHyperLinkgetProperty());
-List listofContent=commutils.convertListFromWebElement(driver, allheaderContent);
-//logreport.info("AddedIntoList-->"+listofContent.toString());
-//logreport.info("WebElementList-->"+allheaderContent.toString());
-commutils.verifyTrue( listofContent==allheaderContent, "passed");
+
+ClientAchievementPageHelper.preConfiguration(driver, commutils);	
+	
+	
+//storing all the header in list
+List<WebElement>allheaderContent=commutils.getListOfWebElement(driver, CsrPageHelper.allHyperLinkgetProperty());
+List<String>listofContent=commutils.convertListFromWebElement(driver, allheaderContent);
+
+//asserting with size 
+commutils.verifyTrue( listofContent.size()==allheaderContent.size(), "passed");
+logreport.info("AddedIntoList-->"+listofContent.toString());
 		
 }
 	

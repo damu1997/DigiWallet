@@ -7,10 +7,15 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.atmecs.qa.helper.EventsPageHelper;
-import com.atmecs.qa.helper.MediaPageHelper;
 import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
-
+/**
+ * This class will performs the validation of slides in forward 
+ * and Backward direction
+ * Assertion done with respect to the header content
+ * @author Damodaran.Krishnan
+ *
+ */
 public class EventsPageTest extends Base {
 CommonUtils commutils=new CommonUtils();
 
@@ -23,20 +28,14 @@ public void preSetUp(){
 
 @Test	
 public void ForwardandBackwardvalidateSlides() {
-	//media	
-WebElement media=commutils.find(driver,MediaPageHelper.MediagetProperty());	
-commutils.mouseOverElement(driver, media);
-		
-		
-  //events
-commutils.waitForElement(driver,MediaPageHelper.eventsgetProperty());
-commutils.normalClick(driver, MediaPageHelper.eventsgetProperty());
+    //navigating to news
+ EventsPageHelper.preconfigurationsetup(driver, commutils);
 			
 	//get the list of slides
 List<WebElement> list=commutils.getListOfWebElement(driver,EventsPageHelper.allheader());
-System.out.println(list.size());
+
 		
-	//validating theSlides Forward
+  //validating the Slides Forward
 		for (int i = 0; i <=list.size() ; i++) {	
 commutils.find(driver, EventsPageHelper.forwardslideBtn());
 commutils.waitForElement(driver,EventsPageHelper.forwardslideBtn());

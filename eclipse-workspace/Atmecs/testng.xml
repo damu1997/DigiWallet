@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="5" name="Test">
-    <classes>
-      <!class name="com.atmecs.qa.testscript.MediaPageTest"/>
-      <!class name="com.atmecs.qa.testscript.EventsPageTest"/>
-      <!class name="com.atmecs.qa.testscript.NewsPageTest"/>
-      <class name="com.atmecs.qa.testscript.CSRpageTest"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+<suite name="AtmecsMedia">
+
+<test name="Test1">
+<classes>
+<class name="com.atmecs.qa.testscript.MediaPageTest"></class>
+</classes>
+</test>
+<test name="Test2">
+<classes>
+<class name="com.atmecs.qa.testscript.NewsPageTest"></class>
+</classes>
+</test>
+<test name="Test3">
+<classes>
+<class name="com.atmecs.qa.testscript.EventsPageTest"></class>
+</classes>
+</test>
+<test name="Test4">
+<classes>
+<class name="com.atmecs.qa.testscript.CsrPageTest"></class>
+</classes>
+</test>
+<test name="Test5">
+<classes>
+<class name="com.atmecs.qa.testscript.ClientAchievementPageTest"></class>
+</classes>
+</test>
+</suite>

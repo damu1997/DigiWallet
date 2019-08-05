@@ -1,9 +1,9 @@
 package com.atmecs.qa.helper;
 
-import java.util.Properties;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.atmecs.qa.constants.Constants;
-import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
 import com.atmecs.qa.utils.PropertyUtil;
 
@@ -25,7 +25,7 @@ String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.A
 return data;	
 }
 
-public static String navigateBackgetProperty(){
+public static String navigateBackToHome(){
 String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.ALL_NAVI_LOC),"NavigateBackHome");
 return data;	
 }	
@@ -47,6 +47,23 @@ String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.A
 return data;
 	
 }
-
+public static void preConfigurationSetup(WebDriver driver,CommonUtils commutils) {
+	
+		//media
+		WebElement Media= commutils.find(driver,MediaPageHelper.MediagetProperty());
+		commutils.mouseOverElement(driver, Media);
+	}
+public static void navigateBackToHomeSetup(WebDriver driver,CommonUtils commutils) {
+	
+	//home
+	commutils.waitForElement(driver,MediaPageHelper.navigateBackToHome());
+	commutils.normalClick(driver, MediaPageHelper.navigateBackToHome());
+}
+public static void assertingHeader(WebDriver driver,CommonUtils commutils,String Xpath,String headerxpath) {
+	
+	commutils.waitForElement(driver,Xpath);
+	commutils.normalClick(driver, Xpath);
+	commutils.verifyTrue(CommonUtils.isDisplayed(driver, headerxpath),"passed");
+}
 	
 }

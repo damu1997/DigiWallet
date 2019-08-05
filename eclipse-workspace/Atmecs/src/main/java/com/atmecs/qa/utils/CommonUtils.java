@@ -8,20 +8,24 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import com.atmecs.qa.testbase.Base;
 
 public class CommonUtils  extends Base{
+/**
+ * 	
+ * @param driver
+ * @param Xpath
+ * @return
+ */
 	
 	
-	
-	public WebElement find(WebDriver driver,String Xpath)  {
+public WebElement find(WebDriver driver,String Xpath)  {
 		WebElement Name=driver.findElement(By.xpath(Xpath));
 		return Name;
-	}
+}
 	
 	
 public void  clickOperation(WebDriver driver,WebElement Name,String Xpath)  {
@@ -98,7 +102,7 @@ public List<String> convertListFromWebElement(WebDriver driver, List<WebElement>
 	if(list.size()>0) {
 		for(WebElement element:list) {
 			textList.add(element.getText());
-		}
+  }
 	}
 	return textList;
 }

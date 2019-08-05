@@ -6,13 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.atmecs.qa.helper.ClientAchievementPageHelper;
-import com.atmecs.qa.helper.MediaPageHelper;
 import com.atmecs.qa.helper.NewsPageHelper;
 import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
 import com.atmecs.qa.utils.LogReporter;
-
+/**
+ * This class will performs the validation of watchMore button 
+ * and all the ReadMore button 
+ * Assertion done with respect to the header content 
+ * @author Damodaran.Krishnan
+ *
+ */
 public class NewsPageTest extends Base{
 	CommonUtils commutils=new CommonUtils();
 	LogReporter logreport=new LogReporter();
@@ -20,52 +24,35 @@ public class NewsPageTest extends Base{
 	@BeforeTest	
 public void preSetUp(){
 		openBrowser();
+		//Navigate to news	
+		NewsPageHelper.PreConfigurationSetup(driver, commutils);
 	}
 	
 	
 	@Test(priority = 0)
-	public void checkingWatchMoreFn() {
-		
-	//media	
-	WebElement media=commutils.find(driver,MediaPageHelper.MediagetProperty());	
-	commutils.mouseOverElement(driver, media);
-	//news
-	commutils.waitForElement(driver, MediaPageHelper.NewsgetProperty());
-	commutils.normalClick(driver, MediaPageHelper.NewsgetProperty());
-	
-	//WNbtnAndAssert
-	commutils.waitForElement(driver, NewsPageHelper.btngetProperty());
-	commutils.normalClick(driver, NewsPageHelper.btngetProperty());
-	commutils.verifyTrue(CommonUtils.isDisplayed(driver, MediaPageHelper.allHeadergetProperty()),"passed");
-	
-	
-	//backtohome
-	commutils.waitForElement(driver,MediaPageHelper.allHeadergetProperty());
-	commutils.normalClick(driver, MediaPageHelper.navigateBackgetProperty());
-		
-		
-	}
-	@Test(priority = 1)
-	public void validatingAllReadMore() {
-		//media	
-		WebElement media=commutils.find(driver,MediaPageHelper.MediagetProperty());	
-		commutils.mouseOverElement(driver, media);
-		//news
-		commutils.waitForElement(driver, MediaPageHelper.NewsgetProperty());
-		commutils.normalClick(driver, MediaPageHelper.NewsgetProperty());	
-		//clicking on all the read more
-		List<WebElement> readMoreLink = commutils.getListOfWebElement(driver,NewsPageHelper.AllReadMoreBtngetProperty());
+public void validatingWatchMoreBtn() {
 
-		for(int i=1; i<=readMoreLink.size(); i++) {
+//Asserting the header content
+NewsPageHelper.assertingWatchMoreBtn(driver, commutils);
+	
+}
+	
+@Test(priority = 1)	
+public void validatingAllReadMore() {
+				
+//Getting the webelement into list
+List<WebElement> readMoreLink = commutils.getListOfWebElement(driver,NewsPageHelper.AllReadMoreBtngetProperty());
+for(int i=1; i<=readMoreLink.size(); i++) {
 			
-			if(commutils.waitForElement(driver, NewsPageHelper.SingleReadMoreBtngetProperty().replace("l", String.valueOf(i)))); {
-			commutils.normalClick(driver, NewsPageHelper.SingleReadMoreBtngetProperty().replace("l", String.valueOf(i)));
-			//assertforallnewspdf
-			commutils.verifyTrue(commutils.isDisplayed(driver, NewsPageHelper.pdfTitlegetProperty()), "passed");
+  if(commutils.waitForElement(driver, NewsPageHelper.SingleReadMoreBtngetProperty().replace("l", String.valueOf(i)))); {
+  commutils.normalClick(driver, NewsPageHelper.SingleReadMoreBtngetProperty().replace("l", String.valueOf(i)));
+
+//asserting with PDF header
+  commutils.verifyTrue(CommonUtils.isDisplayed(driver, NewsPageHelper.pdfTitlegetProperty()), "passed");
 			
-	}
-	}
-	}
+}
+}
+}
 
 	
 	

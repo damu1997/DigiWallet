@@ -1,5 +1,6 @@
 package com.atmecs.qa.helper;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.atmecs.qa.constants.Constants;
@@ -7,9 +8,9 @@ import com.atmecs.qa.testbase.Base;
 import com.atmecs.qa.utils.CommonUtils;
 import com.atmecs.qa.utils.PropertyUtil;
 
-public class CSRPageHelper extends Base{
+public class CsrPageHelper extends Base{
 
- static CommonUtils commutils=new CommonUtils();
+ 
 
 public static String allHyperLinkgetProperty(){
 String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.CSR_LOC),"AllHyperLink");
@@ -56,7 +57,7 @@ public static String hfhHeadergetProperty(){
 String data=PropertyUtil.readPropertyFile( PropertyUtil.loadProperty(Constants.CSR_LOC),"HFHHeaderImg");
 return data;		
 }
-public static void preRequestNavigation() { 
+public static void preRequestNavigation(WebDriver driver,CommonUtils commutils) { 
 
 	//media
 WebElement media=commutils.find(driver,MediaPageHelper.MediagetProperty());	
@@ -64,5 +65,12 @@ commutils.mouseOverElement(driver, media);
     //our CSR
 commutils.waitForElement(driver,MediaPageHelper.csrgetProperty());
 commutils.normalClick(driver, MediaPageHelper.csrgetProperty());	
+}
+public static void assertinglinkHeader(WebDriver driver,CommonUtils commutils,String Xpath,String Headerxpath) {
+	//validating DAV link
+	commutils.waitForElement(driver,Xpath);
+	commutils.normalClick(driver, Xpath);
+	commutils.verifyTrue(CommonUtils.isDisplayed(driver, Headerxpath),"passed");
+	driver.navigate().back();
 }
 }

@@ -5,14 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.atmecs.qa.constants.Constants;
-
 public class PropertyUtil {
 /**
  * 
  * @param filePath
- * @return loads the property used in the init method 
- * @throws IOException
+ * @return loads the property returns prop reference  
+ * 
  */
 	
 	public static Properties loadProperty(String filePath) {
@@ -33,7 +31,12 @@ public class PropertyUtil {
 		}
 		return prop;
 	}
-	
+/**
+ * 
+ * @param props
+ * @param key
+ * @return reads the .properties file and return the value
+ */
 	
 	public static String readPropertyFile(Properties props,String key) {
         String value = props.getProperty(key);
@@ -44,10 +47,6 @@ public class PropertyUtil {
 		
 		
 	
-	public static void main(String[] args) {
-		Properties props=loadProperty(Constants.ALL_NAVI_LOC);
-		String a=readPropertyFile(props, "Media");
-		System.out.println(a);
-	}
+	
 	
 }
