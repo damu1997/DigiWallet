@@ -3,12 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.atmecs.qa.testscript.MediaPageTest">
+      <class name="com.atmecs.qa.testscript.ClientAchievementPageTest">
         <methods>
+          <include name="validatingReadmore"/>
           <include name="preSetUp"/>
-          <include name="AllNavigationUnderMedia"/>
         </methods>
-      </class> <!-- com.atmecs.qa.testscript.MediaPageTest -->
+      </class> <!-- com.atmecs.qa.testscript.ClientAchievementPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

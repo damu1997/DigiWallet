@@ -12,14 +12,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import com.atmecs.qa.testbase.Base;
-
-public class CommonUtils  extends Base{
 /**
- * 	
- * @param driver
- * @param Xpath
- * @return
+ * This class contains all the action methods like assert,click,wait etc
+ * @author Damodaran.Krishnan
+ *
  */
+public class CommonUtils  extends Base{
+
 	
 	
 public WebElement find(WebDriver driver,String Xpath)  {

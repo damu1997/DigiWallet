@@ -11,10 +11,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.Test;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 import com.atmecs.qa.constants.Constants;
-
+/**
+ * This class responsable for browser initialization and termination
+ * @author Damodaran.Krishnan
+ *
+ */
 public class Base {
 	public static WebDriver driver;
 	public Properties properties;
@@ -32,7 +37,7 @@ public class Base {
 			e.printStackTrace();
 		}
     }
-  
+  @BeforeTest
 	public void openBrowser() 
 	{
     	String path = Constants.PROJECT_BASE_PATH+"/resources/Config.properties";
@@ -63,9 +68,11 @@ public class Base {
 		
 	}
 
-   
+   @AfterTest
 	public void quitBrowser()  {
-    	driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+    	
+    	driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS); 
+    	driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
 		driver.quit();
 	}
 }
